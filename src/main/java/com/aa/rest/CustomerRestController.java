@@ -3,6 +3,7 @@ package com.aa.rest;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -50,6 +51,14 @@ public class CustomerRestController {
 		customerService.save(customer);
 		
 		return customer;
+	}
+	
+	@DeleteMapping("/customers/{id}")
+	public String deleteById(@PathVariable int id) {
+		
+		customerService.deleteById(id);
+		
+		return "delete customer where id=" + id;
 	}
 
 }

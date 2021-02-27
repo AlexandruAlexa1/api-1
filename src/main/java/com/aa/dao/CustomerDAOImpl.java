@@ -59,7 +59,16 @@ public class CustomerDAOImpl implements CustomerDAO {
 
 	@Override
 	public void deleteById(int id) {
-		// TODO Auto-generated method stub
+		
+		// get current hibernate session 
+		Session session = entityManager.unwrap(Session.class);
+		
+		// create a query 
+		Query<?> query = session.createQuery("delete from Customer where id=:employeeId");
+		query.setParameter("employeeId", id);
+		
+		// execute update
+		query.executeUpdate();
 
 	}
 
