@@ -48,7 +48,12 @@ public class CustomerDAOImpl implements CustomerDAO {
 
 	@Override
 	public void save(Customer customer) {
-		// TODO Auto-generated method stub
+		
+		// get current hibernate session
+		Session session = entityManager.unwrap(Session.class);
+		
+		// save customer
+		session.saveOrUpdate(customer);
 
 	}
 

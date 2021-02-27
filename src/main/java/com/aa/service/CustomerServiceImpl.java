@@ -30,9 +30,10 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 
 	@Override
+	@Transactional
 	public void save(Customer customer) {
-		// TODO Auto-generated method stub
-
+		
+		customerDAO.save(customer);
 	}
 
 	@Override
