@@ -35,8 +35,15 @@ public class CustomerDAOImpl implements CustomerDAO {
 
 	@Override
 	public Customer findById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		// get current hibernate session
+		Session session = entityManager.unwrap(Session.class);
+		
+		// get customer by id
+		Customer customer = session.get(Customer.class, id);
+		
+		// return customer
+		return customer;
 	}
 
 	@Override
