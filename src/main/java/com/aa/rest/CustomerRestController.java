@@ -31,7 +31,13 @@ public class CustomerRestController {
 	@GetMapping("/customers/{id}")
 	public Customer findById(@PathVariable int id) {
 		
-		return customerService.findById(id);
+		Customer customer = customerService.findById(id);
+		
+		if (customer == null) {
+			throw new CustomerNotFoundException("Customer id not found - " + id);
+		}
+		
+		return customer;
 	}
 	
 	@PostMapping("/customers")
@@ -55,6 +61,12 @@ public class CustomerRestController {
 	
 	@DeleteMapping("/customers/{id}")
 	public String deleteById(@PathVariable int id) {
+		
+		Customer customer = customerService.findById(id);
+		
+		if (customer == null ) {
+			throw new CustomerNotFoundException("customer id not found - " + id);
+		}
 		
 		customerService.deleteById(id);
 		
